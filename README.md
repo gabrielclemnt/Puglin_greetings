@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Greetings #
 
 TODO Describe the plugin shortly here.
@@ -42,3 +43,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <https://www.gnu.org/licenses/>.
+=======
+# Moodle-TESTE
+>>>>>>> 347448a3bd8921de5b7c5867fda0328b632c8d8d

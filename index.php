@@ -30,6 +30,8 @@ $PAGE->set_pagelayout('standard');// Define o layout da página.
 $PAGE->set_title(get_string('pluginname' , 'local_greetings'));
 $PAGE->set_heading(get_string('pluginname' , 'local_greetings'));
 
+$messageform = new \local_greetings\form\message_form(); // Instancia um objeto da classe message_form.
+
 echo $OUTPUT->header(); // Imprime o cabeçalho da página.
 
 // echo '<h3>Saudações, meu Rei</h3>'; // Imprime uma mensagem de saudação.
@@ -42,4 +44,11 @@ if (isloggedin()) {
     echo get_string('greetinguser', 'local_greetings');
 }
 
+$messageform->display(); // Exibe o formulário.
+if ($data = $messageform->get_data()) {
+
+    $message = required_param('message', PARAM_TEXT);
+
+    echo $OUTPUT->heading($message, 4);
+}
 echo $OUTPUT->footer(); // Imprime o rodapé da página.

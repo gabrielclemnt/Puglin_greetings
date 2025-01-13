@@ -75,10 +75,11 @@ $messages = $DB->get_records_sql($sql);
 
 echo $OUTPUT->box_start('card-columns');
 
-foreach ($messages as $m) {
+foreach ($messages as $m) { // Itera sobre as mensagens.
     echo html_writer::start_tag('div', ['class' => 'card']);
     echo html_writer::start_tag('div', ['class' => 'card-body']);
-    echo html_writer::tag('p', $m->message, ['class' => 'card-text']);
+    // echo html_writer::tag('p', $m->message, ['class' => 'card-text']);
+    echo html_writer::tag('p', format_text($m->message, FORMAT_PLAIN), ['class' => 'card-text']);
     echo html_writer::tag('p', get_string('postedby', 'local_greetings', $m->firstname), ['class' => 'card-text']);
     echo html_writer::start_tag('p', ['class' => 'card-text']);
     echo html_writer::tag('small', userdate($m->timecreated), ['class' => 'text-muted']);
@@ -90,11 +91,11 @@ foreach ($messages as $m) {
 echo $OUTPUT->box_end();
 
 
-/*if ($data = $messageform->get_data()) {
+/*if ($data = $messageform->get_data()) { // Verifica se o formulário foi submetido.
 
-    $message = required_param('message', PARAM_TEXT);
+    $message = required_param('message', PARAM_TEXT); // Obtém o valor do campo message.
 
-    echo $OUTPUT->heading($message, 4);
+    echo $OUTPUT->heading($message, 4); // Imprime o valor do campo message.
 }
 */
 echo $OUTPUT->footer(); // Imprime o rodapé da página.

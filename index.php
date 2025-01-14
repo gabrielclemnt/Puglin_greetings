@@ -40,12 +40,14 @@ $deleteanypost = has_capability('local/greetings:deleteanymessage', $context);
 $action = optional_param('action', '', PARAM_TEXT);
 
 if ($action == 'del') {
+    require_sesskey(); // Verifica se a sessão é válida.
     $id = required_param('id', PARAM_TEXT);
 
     if ($deleteanypost) {
         $params = ['id' => $id];
 
         $DB->delete_records('local_greetings_messages', $params);
+        redirect($PAGE->url); // Redireciona para a página atual.
     }
 }
 
@@ -101,12 +103,12 @@ foreach ($messages as $m) { // Itera sobre as mensagens.
     echo html_writer::start_tag('p', ['class' => 'card-text']);
     echo html_writer::tag('small', userdate($m->timecreated), ['class' => 'text-muted']);
     echo html_writer::end_tag('p');
-    if ($deleteanypost) {
+    if ($deleteanypost) { // link da URL de exclusão da mensagem
         echo html_writer::start_tag('p', ['class' => 'card-footer text-center']);
         echo html_writer::link(
             new moodle_url(
                 '/local/greetings/index.php',
-                ['action' => 'del', 'id' => $m->id]
+                ['action' => 'del', 'id' => $m->id, 'sesskey' => sesskey()] // implementar sesskey
             ),
             $OUTPUT->pix_icon('t/delete', '') . get_string('delete')
         );

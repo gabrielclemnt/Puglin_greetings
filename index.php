@@ -35,9 +35,23 @@ if (isguestuser()) { // Verifica se o usuário é um convidado.
 }
 
 $messageform = new \local_greetings\form\message_form(); // Instancia um objeto da classe message_form.
+$allowpost = has_capability('local/greetings:postmessages', $context);
+$deleteanypost = has_capability('local/greetings:deleteanymessage', $context);
+$action = optional_param('action', '', PARAM_TEXT);
+
+if ($action == 'del') {
+    $id = required_param('id', PARAM_TEXT);
+
+    if ($deleteanypost) {
+        $params = ['id' => $id];
+
+        $DB->delete_records('local_greetings_messages', $params);
+    }
+}
 
 // salvar a mensagem no banco de dados
 if ($data = $messageform->get_data()) {
+    require_capability('local/greetings:postmessages', $context);
     $message = required_param('message', PARAM_TEXT);
 
     if (!empty($message)) {
@@ -61,7 +75,10 @@ if (isloggedin()) {
     echo get_string('greetinguser', 'local_greetings');
 }
 
-$messageform->display(); // Exibe o formulário.
+// $messageform->display(); // Exibe o formulário.
+if ($allowpost) {
+    $messageform->display();
+}
 // $messages = $DB->get_records('local_greetings_messages');
 $userfields = \core_user\fields::for_name()->with_identity($context);
 $userfieldssql = $userfields->get_sql('u');
@@ -84,6 +101,17 @@ foreach ($messages as $m) { // Itera sobre as mensagens.
     echo html_writer::start_tag('p', ['class' => 'card-text']);
     echo html_writer::tag('small', userdate($m->timecreated), ['class' => 'text-muted']);
     echo html_writer::end_tag('p');
+    if ($deleteanypost) {
+        echo html_writer::start_tag('p', ['class' => 'card-footer text-center']);
+        echo html_writer::link(
+            new moodle_url(
+                '/local/greetings/index.php',
+                ['action' => 'del', 'id' => $m->id]
+            ),
+            $OUTPUT->pix_icon('t/delete', '') . get_string('delete')
+        );
+        echo html_writer::end_tag('p');
+    }
     echo html_writer::end_tag('div');
     echo html_writer::end_tag('div');
 }

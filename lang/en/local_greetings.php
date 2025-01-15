@@ -37,3 +37,5 @@ $string['yourmessage'] = 'Sua mensagem';
 $string['postedby'] = 'Posted by {$a}.';
 $string['greetings:viewmessages'] = 'Ver mensagens no mural de saudações';
 $string['greetings:postmessages'] = 'Postar uma nova mensagem no mural de saudações';
+$string['messagecardbgcolor'] = 'Message card color';
+$string['messagecardbgcolordesc'] = 'Background color of the message card';

@@ -23,31 +23,35 @@
 
  defined('MOODLE_INTERNAL') || die();   // Impede o acesso direto a este script.
 
- $capabilities = [
-    'local/greetings:postmessages' => [
+ $capabilities = array(
+    'local/greetings:postmessages' => array(
         'riskbitmask' => RISK_SPAM,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => [
+        'archetypes' => array(
             'user' => CAP_ALLOW,
-        ]
-    ],
-    'local/greetings:viewmessages' => [
-        'riskbitmask' => RISK_SPAM,
+        )
+    ),
+    'local/greetings:viewmessages' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => [
+        'archetypes' => array(
             'user' => CAP_ALLOW,
-        ]
-    ],
-    'local/greetings:deleteanymessage' => [
-        'riskbitmask' => RISK_SPAM,
-        'captype' => 'read',
+        )
+    ),
+    'local/greetings:deleteownmessage' => array(
+        'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => [
+        'archetypes' => array(
             'user' => CAP_ALLOW,
-        ]
-    ],
- ];
-
-
+        )
+    ),
+    'local/greetings:deleteanymessage' => array(
+        'riskbitmask' => RISK_DATALOSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW,
+        )
+    ),
+ );

@@ -31,10 +31,19 @@ class message_form extends \moodleform {
      * Define the form.
      */
     public function definition() {
-        $mform = $this->_form; // Don't forget the underscore!
+        $mform = $this->_form; // Get the form.
 
         $mform->addElement('textarea', 'message', get_string('yourmessage', 'local_greetings')); // Add elements to your form.
         $mform->setType('message', PARAM_TEXT); // Set type of element.
+
+        if (isset($this->_customdata['message'])) { // Check if the message is set.
+            $message = $this->_customdata['message'];
+
+            $mform->addElement('hidden', 'id', $message->id);
+            $mform->setType('id', PARAM_INT); // Set type of element.
+
+            $mform->setDefault('message', $message->message);
+        }
 
         $submitlabel = get_string('submit');
         $mform->addElement('submit', 'submitmessage', $submitlabel);

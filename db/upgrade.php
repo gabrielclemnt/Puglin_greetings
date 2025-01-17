@@ -6,6 +6,7 @@
  * @param int $oldversion Número da versão da qual o plugin está sendo atualizado.
  */
 function xmldb_local_greetings_upgrade($oldversion) {
+    // Função de atualização do plugin.
     global $DB;
 
     $dbman = $DB->get_manager();

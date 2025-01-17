@@ -25,17 +25,22 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Boas Vindas';
-$string['greetinguser'] = 'Boas Vindas meu lindo, user.';
-$string['greetingloggedinuser'] = 'Boas Vindas jovem, {$a}.';
+$string['pluginname'] = 'Boas vindas';
+$string['greetinguser'] = 'Boas vindas meu lindo, user.';
+$string['greetingloggedinuser'] = 'Boas vindas jovem, {$a}.';
 
-$string['greetinguserau'] = 'Olá, {$a}.';
-$string['greetinguseres'] = 'Olá, {$a}.';
+$string['greetinguserau'] = 'Hello, {$a}.';
+$string['greetinguseres'] = 'Hola, {$a}.';
 $string['greetinguserfj'] = 'Bula, {$a}.';
 $string['greetingusernz'] = 'Kia Ora, {$a}.';
-$string['yourmessage'] = 'Sua mensagem';
+$string['yourmessage'] = 'Your message';
+$string['editmessage'] = 'Edit message';
+$string['norecordfound'] = 'No record found!';
+$string['cannoteditmessage'] = 'You cannot edit this message';
 $string['postedby'] = 'Posted by {$a}.';
-$string['greetings:viewmessages'] = 'Ver mensagens no mural de saudações';
-$string['greetings:postmessages'] = 'Postar uma nova mensagem no mural de saudações';
+$string['greetings:viewmessages'] = 'View messages on the Greetings wall';
+$string['greetings:postmessages'] = 'Post a new message on the Greetings wall';
+$string['greetings:deleteownmessage'] = 'Delete own message on the Greetings wall';
+$string['greetings:deleteanymessage'] = 'Delete any message on the Greetings wall';
 $string['messagecardbgcolor'] = 'Message card color';
 $string['messagecardbgcolordesc'] = 'Background color of the message card';
